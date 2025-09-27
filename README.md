@@ -37,7 +37,7 @@ Per contribuire:
 1. Clona il repository
 2. Apri la soluzione `.sln` in Visual Studio
 3. Assicurati di avere SFML e EnTT installati correttamente
-4. Inizia a sviluppare e committare!
+4. leggi TEAM_GUIDE.md per iniziare a committare!
 
 ---
 
