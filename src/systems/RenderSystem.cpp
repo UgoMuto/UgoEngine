@@ -17,13 +17,20 @@ void RenderSystem::update(entt::registry& registry, sf::RenderWindow& window) {
 	//con registry.view<component_1, component_2> viene creata una view che contiene tutte le entità con i component 1 e 2
 	auto view = registry.view<TransformComponent, SpriteComponent>(); 
 
+
+
 	//itero su ogni elemento della view e opero sulle variabili entity, component_1, component_2 della view
 	for (auto [entity,transform,sprite]:view.each())
 	{
+
+		sprite.sprite.setScale(transform.scale);
+		 
 		// Aggiorna la posizione dello sprite in base al componente Position
 		sprite.sprite.setPosition(transform.position);
 
+
 		// Disegna lo sprite sulla finestra
 		window.draw(sprite.sprite);
+		
 	}
 }

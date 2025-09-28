@@ -50,8 +50,8 @@ void Application::createDemoEntities() {
 
 	std::cout << "Generazione entità" << std::endl;
 
-	auto stars = m_registry.create();
-	auto planet = m_registry.create();
+	auto bg_close = m_registry.create();
+	auto player = m_registry.create();
 
 	std::cout << "Creo Resource Manager" << std::endl; 
 
@@ -65,17 +65,17 @@ void Application::createDemoEntities() {
 	//non mi piace, bettori posizione, vettori scaling, path delle texture deve essere tutto caricato da file.
 	//devo creare anche una system che funge da spawner
 
-	std::string starsTexturePath = "resources\\texture\\stars.png";
-	std::string planetTexturePath = "resources\\texture\\planet.png";
+	std::string bg_closeTexturePath = "resources\\texture\\bg_close.png";
+	std::string playerTexturePath = "resources\\texture\\player.png";
 
-	m_registry.emplace<TransformComponent>(stars, sf::Vector2f(0, 0), sf::Vector2f(10, 10), 0.f);
-	m_registry.emplace<VelocityComponent>(stars, sf::Vector2f(0, 0));
-	m_registry.emplace<SpriteComponent>(stars,resManager.getTexture(starsTexturePath));
+	m_registry.emplace<TransformComponent>(bg_close, sf::Vector2f(0, 0), sf::Vector2f(3.2, 3.2), 0.f);
+	//m_registry.emplace<VelocityComponent>(stars, sf::Vector2f(0, 0));
+	m_registry.emplace<SpriteComponent>(bg_close,resManager.getTexture(bg_closeTexturePath));
 	
-	m_registry.emplace<TransformComponent>(planet, sf::Vector2f(400, 300), sf::Vector2f(10, 10), 0.f);
-	m_registry.emplace<VelocityComponent>(planet, sf::Vector2f(0, 0));
-	/*m_registry.emplace<PlayerTag>(planet);*/
-	m_registry.emplace<SpriteComponent>(planet,resManager.getTexture(planetTexturePath));
+	m_registry.emplace<TransformComponent>(player, sf::Vector2f(400, 300), sf::Vector2f(2, 2), 0.f);
+	m_registry.emplace<VelocityComponent>(player, sf::Vector2f(0, 0));
+	/*m_registry.emplace<PlayerTag>(player);*/
+	m_registry.emplace<SpriteComponent>(player,resManager.getTexture(playerTexturePath));
 
 }
 

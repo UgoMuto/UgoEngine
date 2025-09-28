@@ -50,16 +50,16 @@ void InputSystem::update(sf::Window& window, entt::registry& registry)
     //DA CANCELLARE E EGESTIRE NEL PLAYER CONTROLLER
     // 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Up)) {
-        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.y -= 1.f; });
+        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.y -= 15.f; });
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Left)) {
-        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.x -= 1.f; });
+        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.x -= 15.f; });
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Right)) {
-        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.x += 1.f; });
+        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.x += 15.f; });
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Down)) {
-        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.y += 1.f; });
+        registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.y += 15.f; });
     }
     
     }
