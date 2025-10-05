@@ -7,7 +7,7 @@
 struct SpriteComponent {
     sf::Sprite sprite;                                 // L’oggetto disegnabile di SFML che contiene posizione, texture e transform
     std::shared_ptr<sf::Texture> texture{ nullptr };   // Gestione sicura della texture condivisa da mantenere viva altrove (ResourceManager)
-
+   
     bool visible{ true };            // Flag per abilitare/disabilitare il rendering di questa entità
 
     // Costruttore di default

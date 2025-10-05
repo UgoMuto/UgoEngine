@@ -3,7 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 
 struct VelocityComponent {
-    sf::Vector2f velocity{ 0.f, 0.f }; // velocità in pixel/secondo
+    sf::Vector2f velocity{ 0.f, 0.f }; // velocità in pixel/
 };
 
 //Il Movement System userà VelocityComponent per aggiornare Trasform Component

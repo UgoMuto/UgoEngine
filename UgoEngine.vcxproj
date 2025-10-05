@@ -28,6 +28,7 @@
     <ClCompile Include="src\systems\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\components\AnimationComponent.h" />
     <ClInclude Include="include\components\ColliderComponent.h" />
     <ClInclude Include="include\components\InputComponent.h" />
     <ClInclude Include="include\components\myFirstComponents.h" />

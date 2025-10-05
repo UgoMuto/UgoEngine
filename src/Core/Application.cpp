@@ -55,6 +55,7 @@ void Application::createDemoEntities() {
 
 	auto bg_close = m_registry.create();
 	auto player = m_registry.create();
+	auto planet = m_registry.create();
 
 	std::cout << "Creo Resource Manager" << std::endl;
 
@@ -70,6 +71,11 @@ void Application::createDemoEntities() {
 
 	std::string bg_closeTexturePath = "resources\\texture\\bg_close.png";
 	std::string playerTexturePath = "resources\\texture\\player.png";
+	std::string planetTexturePath = "resources\\texture\\planet.png";
+
+	m_registry.emplace<TransformComponent>(planet, sf::Vector2f(50, 50), sf::Vector2f(3.2, 3.2), 0.f);
+	m_registry.emplace<VelocityComponent>(planet, sf::Vector2f(0, 0));
+	m_registry.emplace<SpriteComponent>(planet, resManager.getTexture(planetTexturePath));
 
 	m_registry.emplace<TransformComponent>(bg_close, sf::Vector2f(0, 0), sf::Vector2f(3.2, 3.2), 0.f);
 	//m_registry.emplace<VelocityComponent>(stars, sf::Vector2f(0, 0));
@@ -78,7 +84,7 @@ void Application::createDemoEntities() {
 	m_registry.emplace<TransformComponent>(player, sf::Vector2f(400, 300), sf::Vector2f(2, 2), 0.f);
 	m_registry.emplace<VelocityComponent>(player, sf::Vector2f(0, 0));
 	/*m_registry.emplace<PlayerTag>(player);*/
-	m_registry.emplace<SpriteComponent>(player, resManager.getTexture(playerTexturePath));
+	m_registry.emplace<SpriteComponent>(player,resManager.getTexture(playerTexturePath));
 
 }
 
