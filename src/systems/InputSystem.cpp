@@ -2,11 +2,7 @@
 
 #include "InputSystem.h"
 #include "VelocityComponent.h"
-// inclusione da togliere:
 #include "TransformComponent.h"
-
-//Per adesso funge anche da MovimentSystem
-
 
 void InputSystem::update(sf::Window& window, entt::registry& registry) 
 {
@@ -49,7 +45,7 @@ void InputSystem::update(sf::Window& window, entt::registry& registry)
 
     //DA CANCELLARE E EGESTIRE NEL PLAYER CONTROLLER
     // 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Up)) {
+  /*  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Up)) {
         registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.y -= 15.f; });
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Left)) {
@@ -60,6 +56,6 @@ void InputSystem::update(sf::Window& window, entt::registry& registry)
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Down)) {
         registry.view<VelocityComponent>().each([](auto& comp) { comp.velocity.y += 15.f; });
-    }
+    }*/
     
     }
