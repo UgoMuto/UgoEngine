@@ -9,6 +9,9 @@
 #include "VelocityComponent.h"
 #include "TagComponent.h"
 
+#include <windows.h> //header per aggiungere una finestra di sistema per uscire dal gioco. Poco portabile(funziona solo con windows); Temporaneo, sarebbe bello fare una finestra personalizzata.
+#pragma comment(lib, "User32.lib")  //pragma necessario per poter chiamare l'header precedente
+
 
 Application::Application()
 	: m_window(sf::VideoMode(sf::Vector2u(800, 600), 32), "Test Finestra SFML")
@@ -24,7 +27,7 @@ Application::Application()
 	createDemoEntities();
 }
 
-Application::Application(const DisplayConfig & config, const std::string & title)
+Application::Application(const DisplayConfig& config, const std::string& title)
 	: m_window(sf::VideoMode(config.resolution, config.bitsPerPixel), title)
 	, m_renderSystem()
 	, m_inputSystem()
@@ -53,7 +56,7 @@ void Application::createDemoEntities() {
 	auto bg_close = m_registry.create();
 	auto player = m_registry.create();
 
-	std::cout << "Creo Resource Manager" << std::endl; 
+	std::cout << "Creo Resource Manager" << std::endl;
 
 	//non mi piace, il resManager deve essere un membro privato della classe application
 	//potrei instanziarlo in init() o ancora meglio nel costruttore inline, in ogni caso devo creare ResoriceManager& ResourceManager.instance()
@@ -70,12 +73,12 @@ void Application::createDemoEntities() {
 
 	m_registry.emplace<TransformComponent>(bg_close, sf::Vector2f(0, 0), sf::Vector2f(3.2, 3.2), 0.f);
 	//m_registry.emplace<VelocityComponent>(stars, sf::Vector2f(0, 0));
-	m_registry.emplace<SpriteComponent>(bg_close,resManager.getTexture(bg_closeTexturePath));
-	
+	m_registry.emplace<SpriteComponent>(bg_close, resManager.getTexture(bg_closeTexturePath));
+
 	m_registry.emplace<TransformComponent>(player, sf::Vector2f(400, 300), sf::Vector2f(2, 2), 0.f);
 	m_registry.emplace<VelocityComponent>(player, sf::Vector2f(0, 0));
 	/*m_registry.emplace<PlayerTag>(player);*/
-	m_registry.emplace<SpriteComponent>(player,resManager.getTexture(playerTexturePath));
+	m_registry.emplace<SpriteComponent>(player, resManager.getTexture(playerTexturePath));
 
 }
 
@@ -88,7 +91,7 @@ void Application::run() {
 	while (m_window.isOpen())
 	{
 
-		while (const auto event =  m_window.pollEvent())
+		while (const auto event = m_window.pollEvent())
 		{
 			if (event->is<sf::Event::Closed>())
 			{
@@ -96,8 +99,17 @@ void Application::run() {
 			}
 			else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
 			{
-				if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
-					m_window.close();
+				if (keyPressed->scancode == sf::Keyboard::Scancode::Escape) {
+					if (MessageBoxA(
+						NULL,
+						"Sicuro di voler uscire?",
+						"Un'altra mezz'ora e stacco",
+						MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2
+					) == IDYES)
+					{
+						m_window.close();
+					}
+				}
 			}
 		}
 
@@ -106,10 +118,9 @@ void Application::run() {
 		/*m_playerController.update(m_registry);*/
 
 		m_window.clear();
-		
+
 		m_renderSystem.update(m_registry, m_window);
 
 		m_window.display();
 	}
 }
-
