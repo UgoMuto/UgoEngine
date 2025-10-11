@@ -3,18 +3,23 @@
 #include "VelocityComponent.h"
 #include "TagComponent.h"
 
-//void PlayerController::update(entt::registry& registry) {
-//    auto group = registry.group<InputComponent, VelocityComponent, PlayerTag>();
-//    
-//
-//    registry.view<InputComponent,VelocityComponent,PlayerTag>().each([](auto& comp) {
-//
-//        if (input.up) comp.vvelocity.y -= 1.0f;
-//        if (input.down) vel.velocity.y += 1.0f;
-//        if (input.right) vel.velocity.x += 1.0f;
-//        if (input.left) vel.velocity.x -= 1.0f;
-//        });
-//}
+void PlayerController::update(entt::registry& registry) {
+
+    registry.group<InputComponent, VelocityComponent, PlayerTag>().each([](auto& input, auto& vel, auto& ptag) {
+
+
+        vel.x = 0.0f;
+        vel.y = 0.0f;
+
+        if (input.up) vel.y -= 15.0f;
+        if (input.down) vel.y += 15.0f;
+        if (input.right) vel.x += 15.0f;
+        if (input.left) vel.x -= 15.0f;
+
+        }
+    );
+
+}
 
 
 //VECCHIA VERSIONE PRESENTE NELL'INPUT SSYSTEM'
